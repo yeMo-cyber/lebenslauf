@@ -1,0 +1,283 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammad Faizi</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #193a48;
+            margin: 0;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(12, 27, 33, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        nav.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-100%);
+        }
+        nav a {
+            color: #a8c8d4;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        nav a:hover { 
+            background: #193a48; 
+            color: #fff; 
+            text-decoration: none; 
+        }
+
+        #mini-nav {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 200;
+            display: none;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+        #mini-toggle {
+            background: #0c1b21;
+            border: 1px solid #2a5a6e;
+            color: #a8c8d4;
+            padding: 10px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 13px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+            transition: background 0.2s, color 0.2s;
+        }
+        #mini-toggle:hover { 
+            background: #193a48; 
+            color: #fff; 
+        }
+
+        #mini-menu {
+            background: rgba(12, 27, 33, 0.97);
+            border: 1px solid #2a5a6e;
+            border-radius: 14px;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px) scale(0.97);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        #mini-menu.open { 
+            opacity: 1; 
+            pointer-events: all; 
+            transform: translateY(0) scale(1); 
+        }
+        #mini-menu a {
+            color: #a8c8d4;
+            text-decoration: none;
+            padding: 7px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+            white-space: nowrap;
+        }
+        #mini-menu a:hover { 
+            background: #193a48; 
+            color: #fff; 
+            text-decoration: none; 
+        }
+
+        .header { 
+            text-align: center; 
+            color: white; 
+            padding: 20px; 
+        }
+        #image { 
+            width: 200px; height: auto; border-radius: 50%; 
+        }
+
+        .box {
+            background: linear-gradient(135deg, #0c1b21 0%, #193a48 100%);
+            margin: 20px auto; padding: 20px; width: 80%;
+            border-radius: 10px; color: white;
+        }
+        .box:hover { 
+            padding: 25px; 
+            border-radius: 15px; 
+            transition: 0.3s; 
+            box-shadow: 0 7px 20px black; 
+            cursor: pointer; 
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #0c1b21 0%, #193a48 100%);
+            color: white; font-size: 15px; padding: 20px;
+            text-align: center; border-radius: 20px;
+        }
+        .contact:hover { 
+            transition: 0.3s; 
+            padding: 25px; 
+            box-shadow: 0 7px 20px black; 
+        }
+
+
+        a { 
+            color: white; 
+            text-decoration: none; 
+        }
+        a:hover { 
+            text-decoration: underline; 
+        }
+
+        #datenschutz {
+            border: solid 1px white; padding: 3px; border-radius: 20px;
+            margin-left: 450px; margin-right: 450px;
+        }
+        #datenschutz a { 
+            text-decoration: none; color: grey; 
+        }
+        #datenschutz a:hover { 
+            color: white; 
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="main-nav">
+        <a onclick="scrollZuSektion('startseite')">Startseite</a>
+        <a onclick="scrollZuSektion('profil')">Profil</a>
+        <a onclick="scrollZuSektion('personalien')">Personalien</a>
+        <a onclick="scrollZuSektion('freizeit')">Freizeit</a>
+        <a onclick="scrollZuSektion('kompetenzen')">Kompetenzen</a>
+        <a onclick="scrollZuSektion('schnupperlehren')">Schnupperlehren</a>
+        <a onclick="scrollZuSektion('sprache')">Sprache</a>
+        <a onclick="scrollZuSektion('referenzen')">Referenzen</a>
+        <a onclick="scrollZuSektion('kontakt')">Kontakt</a>
+        <a onclick="scrollZuSektion('datenschutz')">Datenschutz</a>
+    </nav>
+
+    <div id="mini-nav">
+        <div id="mini-menu">
+            <a onclick="scrollZuSektion('startseite');closeMini()">Startseite</a>
+            <a onclick="scrollZuSektion('profil');closeMini()">Profil</a>
+            <a onclick="scrollZuSektion('personalien');closeMini()">Personalien</a>
+            <a onclick="scrollZuSektion('freizeit');closeMini()">Freizeit</a>
+            <a onclick="scrollZuSektion('kompetenzen');closeMini()">Kompetenzen</a>
+            <a onclick="scrollZuSektion('schnupperlehren');closeMini()">Schnupperlehren</a>
+            <a onclick="scrollZuSektion('sprache');closeMini()">Sprache</a>
+            <a onclick="scrollZuSektion('referenzen');closeMini()">Referenzen</a>
+            <a onclick="scrollZuSektion('kontakt');closeMini()">Kontakt</a>
+        </div>
+        <button id="mini-toggle" onclick="toggleMini()">☰ Menü</button>
+    </div>
+
+    <div class="header" id="startseite">
+        <img src="" alt="" id="image">
+        <h1>Mohammad Faizi</h1>
+    </div>
+
+    <div class="content">
+        <div id="profil" class="box">
+            <h2>Profil</h2>
+            <p>Ich bin Mohammad Faizi, ich gehe in die 2.Sekundarschule Jona Weiden. <br>
+            Ich konzentriere mich vorallem darauf das ich gut in richtung Informatik bin weil <br>
+            ich schon in der 5.Klasse angefangen habe Hacks zu programmieren in Spielen mit mein Freund. <br>
+            Meine Stärken sind Websites zu gestalten und programmieren und Technischeprobleme zu lösen.</p>
+        </div>
+        <div id="personalien" class="box">
+            <h2>Personalien</h2>
+            <p><strong>Name</strong> - Mohammad Faizi</p>
+            <p><strong>Geburtsdatum</strong> - 01.01.2012</p>
+            <p><strong>Adresse</strong> - Rapperswil-Jona, Sägestrasse 1 8640</p>
+            <p><strong>Niveu</strong> - </p>
+            <p><strong>Schulort</strong> - <a href="https://www.jona.ch/" target="_blank">Weiden Jona</a></p>
+            <p><strong>Games</strong> - Minecraft (mit Freund), EA Fc 26, GTA V</p>
+            <p><strong>Freunde</strong> - Mit Freunden draussen essen, laufen, bei ihnen Zuhause</p>
+        </div>
+        <div id="freizeit" class="box">
+            <h1>Freizeit</h1>
+            <p><strong>Sport</strong> - Fussball, <a href="https://fcrj.ch/mannschaft/junioren-da">Fc Rapperswil-Jona Da Promotion</a></p>
+            <p><strong>Auf Dem Laptop</strong> - Programmieren, Spielhacks, Hausaufgaben</p>
+            <p><strong>Games</strong> - Minecraft (mit Freund), Fortnite, GTA V</p>
+            <p><strong>Freunde</strong> - Mit Freunden draussen essen, laufen, bei ihnen Zuhause</p>
+        </div>
+        <div id="kompetenzen" class="box">
+            <h1>Kompetenzen</h1>
+            <p><strong>Programmierung</strong><br>Grundkenntnisse in verschiedenen Sprachen</p>
+            <p><strong>Technisches Verständnis</strong><br>Gutes Verständnis für Computer und Technik</p>
+            <p><strong>Problemlösung</strong><br>Fähigkeit, technische Probleme zu lösen</p>
+            <p><strong>Zuverlässigkeit</strong><br>Verantwortungsbewusstes und sorgfältiges Arbeiten</p>
+        </div>
+        <div id="schnupperlehren" class="box">
+            <h1>Schnupperlehren</h1>
+            <p><strong>KV/in EFZ (Kaufmann/Kauffrau)</strong><br>Regionales Ausbildungs Zentrum (RAU)</p>
+            <p><strong>Informatik - Applikationsentwicklung/in EFZ / ICT-Fachmann/in EFZ </strong> <br>Regionales Ausbildungs Zentrum (RAU)</p>
+            <p><strong>KV/in EFZ (Kaufmann/Kauffrau)</strong><br>Sanitas Troesch</p>
+        </div>
+        <div id="sprache" class="box">
+            <h1>Sprachen</h1>
+            <p><strong>Deutsch</strong> - Schulniveau</p>
+            <p><strong>Englisch</strong> - Gutes Schulniveau</p>
+            <p><strong>Französisch</strong> - Nicht so stark</p>
+            <p><strong>Persisch</strong> - Muttersprache</p>
+        </div>
+        <div id="referenz" class="box">
+            <h1>Referenz</h1>
+            <p><strong>Klassenlehrerin</strong> - Schumacher Sonja</p>
+            <p><strong>Email</strong> - <a href="mailto:sonja.schumacher@rj.sg.ch">sonja.schumacher@rj.sg.ch</a></p>
+        </div>
+        <div id="kontakt" class="contact">
+            <h1>Kontakt</h1>
+            <p><strong>Telefon</strong> - +41 78 220 62 01</p>
+            <p><strong>Email</strong> - <a href="mailto:mohammadxi.faizi@gmail.com">mohammadxi.faizi@gmail.com</a></p>
+            <p><strong>8640, St.Gallen Rapperswil-Jona</strong></p>
+            <div id="datenschutz">
+                <a href="datenschutz.html">Datenschutz</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function scrollZuSektion(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        const mainNav = document.getElementById('main-nav');
+        const miniNav = document.getElementById('mini-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                mainNav.classList.add('hidden');
+                miniNav.style.display = 'flex';
+            } else {
+                mainNav.classList.remove('hidden');
+                miniNav.style.display = 'none';
+                closeMini();
+            }
+        });
+        function toggleMini() {
+            document.getElementById('mini-menu').classList.toggle('open');
+        }
+        function closeMini() {
+            document.getElementById('mini-menu').classList.remove('open');
+        }
+    </script>
+</body>
+</html>
