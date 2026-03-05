@@ -118,6 +118,7 @@
             background: linear-gradient(135deg, #0c1b21 0%, #193a48 100%);
             margin: 20px auto; padding: 20px; width: 80%;
             border-radius: 10px; color: white;
+            transition: padding 0.3s, box-shadow 0.3s, border-radius 0.3s;
         }
         .box:hover { 
             padding: 25px; 
@@ -148,14 +149,37 @@
         }
 
         #datenschutz {
-            border: solid 1px white; padding: 3px; border-radius: 20px;
-            margin-left: 450px; margin-right: 450px;
+            border: solid 1px #2a5a6e; 
+            padding: 5px; 
+            border-radius: 10px;
+            transition: all 0.3s;
         }
-        #datenschutz a { 
-            text-decoration: none; color: grey; 
+        #datenschutz:hover { 
+            box-shadow: 0 7px 20px black; 
+            transition: all 0.3s;
+            text-decoration: none;
+            background-color: #0c1b21;
+            color: #a8c8d4;
+            padding: 7px;
         }
-        #datenschutz a:hover { 
-            color: white; 
+
+        #back-top {
+            text-decoration: none;
+        }
+
+        #mini-top {
+            position: fixed;
+            bottom: 20px;
+            right: 95%;
+            display: none;
+            z-index: 999;
+        }
+        #mini-toggle:hover {
+            padding: 15px;
+            transition: 0.3s;
+        }
+        #mini-toggle {
+            transition: padding 0.3s;
         }
     </style>
 </head>
@@ -169,24 +193,27 @@
         <a onclick="scrollZuSektion('kompetenzen')">Kompetenzen</a>
         <a onclick="scrollZuSektion('schnupperlehren')">Schnupperlehren</a>
         <a onclick="scrollZuSektion('sprache')">Sprache</a>
-        <a onclick="scrollZuSektion('referenzen')">Referenzen</a>
+        <a onclick="scrollZuSektion('referenz')">Referenzen</a>
         <a onclick="scrollZuSektion('kontakt')">Kontakt</a>
-        <a onclick="scrollZuSektion('datenschutz')">Datenschutz</a>
+        <a href="datenschutz.html" target="_blank">Datenschutz</a>
     </nav>
 
     <div id="mini-nav">
         <div id="mini-menu">
-            <a onclick="scrollZuSektion('startseite');closeMini()">Startseite</a>
             <a onclick="scrollZuSektion('profil');closeMini()">Profil</a>
             <a onclick="scrollZuSektion('personalien');closeMini()">Personalien</a>
             <a onclick="scrollZuSektion('freizeit');closeMini()">Freizeit</a>
             <a onclick="scrollZuSektion('kompetenzen');closeMini()">Kompetenzen</a>
             <a onclick="scrollZuSektion('schnupperlehren');closeMini()">Schnupperlehren</a>
             <a onclick="scrollZuSektion('sprache');closeMini()">Sprache</a>
-            <a onclick="scrollZuSektion('referenzen');closeMini()">Referenzen</a>
+            <a onclick="scrollZuSektion('referenz');closeMini()">Referenzen</a>
             <a onclick="scrollZuSektion('kontakt');closeMini()">Kontakt</a>
         </div>
         <button id="mini-toggle" onclick="toggleMini()">☰ Menü</button>
+    </div>
+
+    <div id="mini-top">
+        <button id="mini-toggle" onclick="scrollToTop();">↑</button>
     </div>
 
     <div class="header" id="startseite">
@@ -234,23 +261,25 @@
         </div>
         <div id="sprache" class="box">
             <h1>Sprachen</h1>
-            <p><strong>Deutsch</strong> - Schulniveau</p>
-            <p><strong>Englisch</strong> - Gutes Schulniveau</p>
-            <p><strong>Französisch</strong> - Nicht so stark</p>
+            <p><strong>Deutsch</strong> - Schulkenntnisse</p>
+            <p><strong>Englisch</strong> - Schulkenntnisse</p>
+            <p><strong>Französisch</strong> - Schulkenntnisse</p>
             <p><strong>Persisch</strong> - Muttersprache</p>
         </div>
         <div id="referenz" class="box">
             <h1>Referenz</h1>
             <p><strong>Klassenlehrerin</strong> - Schumacher Sonja</p>
             <p><strong>Email</strong> - <a href="mailto:sonja.schumacher@rj.sg.ch">sonja.schumacher@rj.sg.ch</a></p>
+            <p><strong>Tel</strong> - +41 79 615 20</p>
+        </div>
         </div>
         <div id="kontakt" class="contact">
             <h1>Kontakt</h1>
             <p><strong>Telefon</strong> - +41 78 220 62 01</p>
             <p><strong>Email</strong> - <a href="mailto:mohammadxi.faizi@gmail.com">mohammadxi.faizi@gmail.com</a></p>
             <p><strong>8640, St.Gallen Rapperswil-Jona</strong></p>
-            <div id="datenschutz">
-                <a href="datenschutz.html">Datenschutz</a>
+            <div>
+                <a id="datenschutz" href="datenschutz.html">Datenschutz</a>
             </div>
         </div>
     </div>
@@ -278,7 +307,24 @@
         function closeMini() {
             document.getElementById('mini-menu').classList.remove('open');
         }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        const miniTop = document.getElementById('mini-top');
+
+        window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) {
+            miniTop.style.display = 'block';
+        } else {
+            miniTop.style.display = 'none';
+        }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     </script>
 </body>
-
 </html>
