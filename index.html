@@ -170,7 +170,6 @@
         #mini-top {
             position: fixed;
             bottom: 20px;
-            right: 95%;
             display: none;
             z-index: 999;
         }
@@ -316,7 +315,7 @@
         const miniTop = document.getElementById('mini-top');
 
         window.addEventListener('scroll', () => {
-        if (window.scrollY > 200) {
+        if (window.scrollY > 180) {
             miniTop.style.display = 'block';
         } else {
             miniTop.style.display = 'none';
@@ -329,5 +328,3 @@
     </script>
 </body>
 </html>
-
-
