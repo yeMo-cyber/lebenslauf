@@ -1,337 +1,474 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohammad Faizi</title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #193a48;
-            margin: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mohammad Faizi – Portfolio 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#08111c;--deep:#0b1a27;--panel:#0e2234;--card:#112540;--rim:#1a3a55;--rim2:#204060;--accent:#c9a84c;--accent2:#e2c57a;--teal:#2a9fbf;--teal2:#4dbdd8;--text:#eef4f8;--soft:#8fb0c4;--faint:#4a7a96}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Outfit',sans-serif;background:var(--ink);color:var(--text);overflow-x:hidden;cursor:none}
+    #cursor{width:8px;height:8px;background:var(--accent);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:opacity .2s}
+    #cursor-ring{width:36px;height:36px;border:1px solid rgba(201,168,76,.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .4s cubic-bezier(.25,.46,.45,.94),width .3s,height .3s,border-color .3s}
+    nav{position:fixed;top:0;width:100%;z-index:500;background:rgba(8,17,28,.9);backdrop-filter:blur(24px);border-bottom:1px solid rgba(26,58,85,.6);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;transition:transform .4s ease,opacity .4s ease}
+    nav.hidden{transform:translateY(-100%);opacity:0;pointer-events:none}
+    .nav-brand{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;letter-spacing:.06em;color:var(--accent2)}
+    .nav-links{display:flex;align-items:center;gap:2px}
+    .nav-links a{font-size:12.5px;font-weight:500;letter-spacing:.04em;color:var(--soft);text-decoration:none;cursor:none;padding:7px 13px;border-radius:6px;transition:color .2s,background .2s}
+    .nav-links a:hover{color:var(--text);background:rgba(255,255,255,.05)}
+    .nav-cta{background:var(--accent)!important;color:var(--ink)!important;font-weight:700!important;border-radius:8px!important}
+    .nav-cta:hover{background:var(--accent2)!important}
+    #mob-nav{position:fixed;bottom:24px;right:20px;z-index:600;display:none;flex-direction:column;align-items:flex-end;gap:10px}
+    #mob-list{background:rgba(11,26,39,.97);border:1px solid var(--rim);border-radius:16px;padding:10px;display:flex;flex-direction:column;gap:2px;box-shadow:0 24px 64px rgba(0,0,0,.7);opacity:0;pointer-events:none;transform:translateY(12px) scale(.95);transition:all .22s cubic-bezier(.34,1.56,.64,1)}
+    #mob-list.open{opacity:1;pointer-events:all;transform:none}
+    #mob-list a{color:var(--soft);text-decoration:none;padding:9px 20px;border-radius:10px;font-size:13.5px;font-weight:500;transition:all .15s;cursor:pointer}
+    #mob-list a:hover{background:var(--card);color:var(--text)}
+    #mob-btn{background:var(--panel);border:1px solid var(--rim);color:var(--soft);padding:11px 18px;border-radius:50px;cursor:pointer;font-size:13px;font-family:'Outfit',sans-serif;font-weight:500;box-shadow:0 8px 28px rgba(0,0,0,.5);transition:all .2s}
+    #mob-btn:hover{background:var(--card);color:var(--text)}
+    #back-top{position:fixed;bottom:24px;left:20px;z-index:600;width:44px;height:44px;border-radius:50%;background:var(--panel);border:1px solid var(--rim);color:var(--soft);cursor:pointer;font-size:16px;display:none;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 8px 28px rgba(0,0,0,.4)}
+    #back-top:hover{background:var(--accent);color:var(--ink);border-color:var(--accent)}
 
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(12, 27, 33, 0.95);
-            backdrop-filter: blur(8px);
-            padding: 12px 20px;
-            display: flex;
-            justify-content: center;
-            gap: 6px;
-            flex-wrap: wrap;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.5);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        nav.hidden {
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(-100%);
-        }
-        nav a {
-            color: #a8c8d4;
-            text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: background 0.2s, color 0.2s;
-        }
-        nav a:hover { 
-            background: #193a48; 
-            color: #fff; 
-            text-decoration: none; 
-        }
+    /* HERO */
+    #startseite{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:100px 48px 80px}
+    .hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(42,159,191,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(42,159,191,.04) 1px,transparent 1px);background-size:60px 60px}
+    .hero-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(201,168,76,.07) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-60%);pointer-events:none}
+    .hero-glow2{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(42,159,191,.08) 0%,transparent 65%);bottom:0;right:10%;pointer-events:none}
+    .hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1100px;width:100%}
+    .hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+    .hero-line{width:32px;height:1px;background:var(--accent)}
+    .hero-eye-txt{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+    .hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,6vw,82px);font-weight:700;line-height:.95;letter-spacing:-.01em;color:var(--text);margin-bottom:6px}
+    .hero-name em{font-style:italic;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-role{font-size:14px;font-weight:400;color:var(--soft);letter-spacing:.06em;text-transform:uppercase;margin-bottom:28px;margin-top:12px}
+    .hero-desc{font-size:16px;line-height:1.75;color:var(--soft);max-width:460px;margin-bottom:40px}
+    .hero-desc strong{color:var(--text);font-weight:600}
+    .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+    .btn-gold{background:var(--accent);color:var(--ink);border:none;padding:14px 30px;border-radius:10px;font-size:14px;font-weight:700;font-family:'Outfit',sans-serif;cursor:none;text-decoration:none;transition:all .25s;box-shadow:0 4px 24px rgba(201,168,76,.25);letter-spacing:.02em}
+    .btn-gold:hover{background:var(--accent2);transform:translateY(-3px);box-shadow:0 10px 32px rgba(201,168,76,.35)}
+    .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--rim2);padding:14px 30px;border-radius:10px;font-size:14px;font-weight:600;font-family:'Outfit',sans-serif;cursor:none;text-decoration:none;transition:all .25s}
+    .btn-ghost:hover{border-color:var(--accent);color:var(--accent2);transform:translateY(-3px)}
+    .stats-card{background:var(--panel);border:1px solid var(--rim);border-radius:20px;padding:32px;box-shadow:0 24px 64px rgba(0,0,0,.4);position:relative}
+    .stats-card::before{content:'';position:absolute;top:0;left:32px;right:32px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+    .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rim);border-radius:12px;overflow:hidden;margin-bottom:24px}
+    .stat-cell{background:var(--card);padding:22px 20px;transition:background .2s}
+    .stat-cell:hover{background:rgba(201,168,76,.05)}
+    .stat-num{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--accent2);line-height:1}
+    .stat-label{font-size:12px;color:var(--faint);margin-top:4px;font-weight:500}
+    .rb-badge{background:linear-gradient(135deg,rgba(201,168,76,.12),rgba(201,168,76,.04));border:1px solid rgba(201,168,76,.25);border-radius:14px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
+    .rb-lbl{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:3px}
+    .rb-name{font-size:15px;font-weight:600;color:var(--text)}
+    .rb-date{font-size:12px;color:var(--soft);margin-top:1px}
+    .rb-stars{display:flex;gap:3px}
+    .rb-star{color:var(--accent);font-size:14px}
+    .divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--rim),transparent)}
 
-        #mini-nav {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 200;
-            display: none;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 8px;
-        }
-        #mini-toggle {
-            background: #0c1b21;
-            border: 1px solid #2a5a6e;
-            color: #a8c8d4;
-            padding: 10px 16px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 13px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.5);
-            transition: background 0.2s, color 0.2s;
-        }
-        #mini-toggle:hover { 
-            background: #193a48; 
-            color: #fff; 
-        }
+    /* SECTIONS */
+    .sw{max-width:1000px;margin:0 auto;padding:0 40px 100px}
+    .sh{display:flex;align-items:baseline;gap:20px;margin-bottom:48px}
+    .sn{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--accent);letter-spacing:.1em;opacity:.6;min-width:26px}
+    .st{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,40px);font-weight:600;color:var(--text);letter-spacing:-.01em}
+    .sr{flex:1;height:1px;background:var(--rim)}
+    .gc{background:var(--panel);border:1px solid var(--rim);border-radius:18px;padding:32px 36px;transition:all .3s cubic-bezier(.25,.46,.45,.94);position:relative;overflow:hidden}
+    .gc::after{content:'';position:absolute;top:-1px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity .3s}
+    .gc:hover{border-color:rgba(201,168,76,.2);transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+    .gc:hover::after{opacity:1}
 
-        #mini-menu {
-            background: rgba(12, 27, 33, 0.97);
-            border: 1px solid #2a5a6e;
-            border-radius: 14px;
-            padding: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(10px) scale(0.97);
-            transition: opacity 0.2s ease, transform 0.2s ease;
-        }
-        #mini-menu.open { 
-            opacity: 1; 
-            pointer-events: all; 
-            transform: translateY(0) scale(1); 
-        }
-        #mini-menu a {
-            color: #a8c8d4;
-            text-decoration: none;
-            padding: 7px 16px;
-            border-radius: 8px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: background 0.15s, color 0.15s;
-            white-space: nowrap;
-        }
-        #mini-menu a:hover { 
-            background: #193a48; 
-            color: #fff; 
-            text-decoration: none; 
-        }
+    /* PROFIL */
+    .pp{font-size:16px;line-height:1.85;color:var(--soft)}
+    .pp strong{color:var(--text);font-weight:600}
+    .pt{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+    .ptg{background:rgba(42,159,191,.08);border:1px solid rgba(42,159,191,.2);color:var(--teal2);font-size:12px;font-weight:600;padding:5px 14px;border-radius:20px;letter-spacing:.02em}
 
-        .header { 
-            text-align: center; 
-            color: white; 
-            padding: 20px; 
-        }
-        #image { 
-            width: 200px; 
-            height: auto; 
-            border-radius: 50%; 
-        }
+    /* PERSONALIEN */
+    .pig{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .pi{background:rgba(255,255,255,.02);border:1px solid var(--rim);border-radius:12px;padding:18px 20px;transition:all .2s}
+    .pi:hover{border-color:rgba(201,168,76,.25);background:rgba(201,168,76,.04)}
+    .pl{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:5px;opacity:.8}
+    .pv{font-size:14px;color:var(--text);font-weight:500}
+    .pv a{color:var(--teal2);text-decoration:none}
+    .pv a:hover{text-decoration:underline}
 
-        .box {
-            background: linear-gradient(135deg, #0c1b21 0%, #193a48 100%);
-            margin: 20px auto; 
-            padding: 20px; 
-            width: 80%;
-            border-radius: 10px; 
-            color: white;
-            transition: padding 0.3s, box-shadow 0.3s, border-radius 0.3s;
-        }
-        .box:hover { 
-            padding: 25px; 
-            border-radius: 15px; 
-            transition: 0.3s; 
-            box-shadow: 0 7px 20px black; 
-            cursor: pointer; 
-        }
+    /* FREIZEIT */
+    .fzg{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .fzi{background:rgba(255,255,255,.02);border:1px solid var(--rim);border-radius:14px;padding:22px 24px;transition:all .2s}
+    .fzi:hover{border-color:rgba(42,159,191,.3);background:rgba(42,159,191,.04)}
+    .fzico{font-size:24px;margin-bottom:10px}
+    .fztl{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);margin-bottom:10px}
+    .fztgs{display:flex;flex-wrap:wrap;gap:6px}
+    .fztg{background:rgba(255,255,255,.05);border:1px solid var(--rim2);color:var(--text);font-size:12.5px;padding:4px 12px;border-radius:16px;transition:all .15s}
+    .fztg a{color:inherit;text-decoration:none}
+    .fztg:hover{border-color:var(--teal);color:var(--teal2)}
 
-        .contact {
-            background: linear-gradient(135deg, #0c1b21 0%, #193a48 100%);
-            color: white; 
-            font-size: 15px; 
-            padding: 20px;
-            text-align: center; 
-            border-radius: 20px;
-        }
-        .contact:hover { 
-            transition: 0.3s; 
-            padding: 25px; 
-            box-shadow: 0 7px 20px black; 
-        }
+    /* KOMPETENZEN */
+    .skl{display:flex;flex-direction:column;gap:20px}
+    .skt{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+    .skn{font-size:14px;font-weight:600;color:var(--text)}
+    .sko{font-size:12px;color:var(--faint)}
+    .sktr{height:3px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
+    .skb{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width 1.4s cubic-bezier(.16,1,.3,1)}
 
+    /* TIMELINE */
+    .tl{position:relative;padding-left:32px}
+    .tl::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--accent),var(--teal),transparent)}
+    .tli{position:relative;margin-bottom:28px}
+    .tld{position:absolute;left:-32px;top:8px;width:13px;height:13px;border-radius:50%;background:var(--accent);border:2px solid var(--ink);box-shadow:0 0 0 3px rgba(201,168,76,.2)}
+    .tld.t{background:var(--teal);box-shadow:0 0 0 3px rgba(42,159,191,.2)}
+    .slc{background:var(--panel);border:1px solid var(--rim);border-radius:18px;padding:28px 32px;transition:all .3s}
+    .slc:hover{border-color:rgba(201,168,76,.25);transform:translateX(4px);box-shadow:0 16px 48px rgba(0,0,0,.35)}
+    .sltp{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+    .slnm{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--text)}
+    .slpl{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);color:var(--accent);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;white-space:nowrap}
+    .slpl.b{background:rgba(42,159,191,.1);border-color:rgba(42,159,191,.25);color:var(--teal2)}
+    .slmt{font-size:13px;color:var(--faint);margin-bottom:4px}
+    .slfd{font-size:14px;color:var(--soft);font-weight:500}
 
-        a { 
-            color: white; 
-            text-decoration: none; 
-        }
-        a:hover { 
-            text-decoration: underline; 
-        }
+    /* EVAL */
+    .evs{margin-top:24px;padding-top:24px;border-top:1px solid var(--rim)}
+    .evhd{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+    .evc{margin-bottom:22px}
+    .evclbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
+    .evr{display:flex;align-items:center;gap:12px;margin-bottom:9px}
+    .evn{font-size:13px;color:var(--text);flex:1}
+    .evd{display:flex;gap:4px}
+    .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.08)}
+    .dot.on{background:var(--accent);box-shadow:0 0 6px rgba(201,168,76,.4)}
+    .dot.on5{background:var(--accent2);box-shadow:0 0 10px rgba(226,197,122,.6)}
+    .evsc{font-size:12px;font-weight:700;color:var(--accent2);min-width:20px;text-align:right}
+    .str-box{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:14px 18px;display:flex;gap:12px;align-items:center;margin-top:8px}
+    .str-lbl{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:2px}
+    .str-txt{font-size:14px;color:var(--text);font-weight:500}
+    .rec-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:16px}
+    .rec-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.3);color:var(--accent2);font-size:13px;font-weight:700;padding:10px 18px;border-radius:12px}
+    .pdf-btn{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:white;border:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;font-family:'Outfit',sans-serif;cursor:none;text-decoration:none;transition:all .2s;box-shadow:0 4px 16px rgba(42,159,191,.25)}
+    .pdf-btn:hover{background:var(--teal2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(42,159,191,.35)}
 
-        #datenschutz {
-            border: solid 1px #2a5a6e; 
-            padding: 5px; 
-            border-radius: 10px;
-            transition: all 0.3s;
-        }
-        #datenschutz:hover { 
-            box-shadow: 0 7px 20px black; 
-            transition: all 0.3s;
-            text-decoration: none;
-            background-color: #0c1b21;
-            color: #a8c8d4;
-            padding: 7px;
-        }
+    /* PDF MODAL */
+    #pdf-modal{position:fixed;inset:0;z-index:1000;background:rgba(8,17,28,.92);backdrop-filter:blur(16px);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease}
+    #pdf-modal.open{opacity:1;pointer-events:all}
+    .modal-box{width:min(860px,95vw);height:min(1000px,90vh);background:var(--panel);border:1px solid var(--rim2);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 40px 100px rgba(0,0,0,.7);transform:scale(.95) translateY(20px);transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+    #pdf-modal.open .modal-box{transform:none}
+    .modal-top{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--rim);flex-shrink:0}
+    .modal-title{font-size:14px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:10px}
+    .modal-title span{font-size:11px;color:var(--faint);font-weight:400}
+    .modal-acts{display:flex;gap:8px}
+    .modal-dl{background:var(--accent);color:var(--ink);border:none;padding:7px 16px;border-radius:8px;font-size:12px;font-weight:700;font-family:'Outfit',sans-serif;cursor:none;text-decoration:none;transition:all .15s}
+    .modal-dl:hover{background:var(--accent2)}
+    .modal-x{background:transparent;border:1px solid var(--rim2);color:var(--soft);width:32px;height:32px;border-radius:8px;cursor:none;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .15s;font-family:'Outfit',sans-serif}
+    .modal-x:hover{background:rgba(255,255,255,.07);color:var(--text)}
+    .modal-fr{flex:1}
+    .modal-fr iframe{width:100%;height:100%;border:none;display:block}
 
-        #back-top {
-            text-decoration: none;
-        }
+    /* SPRACHEN */
+    .lgg{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .lgc{background:rgba(255,255,255,.02);border:1px solid var(--rim);border-radius:14px;padding:22px 18px;text-align:center;transition:all .2s}
+    .lgc:hover{border-color:rgba(201,168,76,.3);background:rgba(201,168,76,.04);transform:translateY(-2px)}
+    .lgf{font-size:28px;margin-bottom:10px}
+    .lgn{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px}
+    .lgl{font-size:11px;color:var(--faint);font-weight:500}
+    .lgp{display:flex;gap:3px;justify-content:center;margin-top:10px}
+    .pip{width:18px;height:3px;border-radius:3px;background:var(--rim)}
+    .pip.on{background:var(--accent)}
 
-        #mini-top {
-            position: fixed;
-            bottom: 20px;
-            display: none;
-            z-index: 999;
-        }
-        #mini-toggle:hover {
-            padding: 15px;
-            transition: 0.3s;
-        }
-        #mini-toggle {
-            transition: padding 0.3s;
-            margin-left: 40px;
-        }
+    /* REFERENZ */
+    .rfw{display:flex;align-items:center;gap:24px}
+    .rfav{width:60px;height:60px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--teal),var(--accent));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:white}
+    .rfn{font-size:18px;font-weight:600;color:var(--text);margin-bottom:3px}
+    .rfr{font-size:13px;color:var(--faint);margin-bottom:14px}
+    .rfb{display:flex;gap:10px;flex-wrap:wrap}
+    .rfa{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.03);border:1px solid var(--rim);color:var(--soft);text-decoration:none;font-size:13px;padding:7px 14px;border-radius:8px;transition:all .2s}
+    .rfa:hover{border-color:var(--accent);color:var(--accent2);background:rgba(201,168,76,.05)}
 
-    </style>
+    /* KONTAKT */
+    #kontakt{background:var(--deep);border-top:1px solid var(--rim);padding:100px 40px;text-align:center;position:relative;overflow:hidden}
+    #kontakt::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,.05) 0%,transparent 60%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+    .kt-pre{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+    .kt-title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,6vw,60px);font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:14px}
+    .kt-sub{font-size:16px;color:var(--soft);margin-bottom:48px}
+    .kt-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+    .kt-item{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--rim);color:var(--text);text-decoration:none;padding:14px 22px;border-radius:14px;font-size:14px;transition:all .25s}
+    .kt-item:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.4);background:rgba(201,168,76,.05)}
+    .kt-ico{font-size:20px}
+    .kt-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--faint)}
+    .kt-val{font-size:14px;font-weight:500;color:var(--text)}
+    footer{background:var(--ink);border-top:1px solid rgba(26,58,85,.5);padding:22px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--faint)}
+    footer a{color:var(--accent);text-decoration:none}
+    footer a:hover{text-decoration:underline}
+
+    .fi{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    .fi.in{opacity:1;transform:none}
+    .fi-d1{transition-delay:.1s}.fi-d2{transition-delay:.2s}.fi-d3{transition-delay:.3s}
+
+    @media(max-width:860px){
+      .hero-inner{grid-template-columns:1fr;gap:48px}
+      .hero-right{display:none}
+      #startseite{padding:110px 24px 80px}
+      .pig{grid-template-columns:1fr 1fr}
+      .lgg{grid-template-columns:1fr 1fr}
+      nav{padding:0 20px}
+      .nav-links{display:none}
+      #mob-nav{display:flex}
+      #back-top{display:flex}
+      .sw{padding:0 20px 80px}
+      .gc{padding:24px 22px}
+      body{cursor:auto}
+      #cursor,#cursor-ring{display:none}
+      .btn-gold,.btn-ghost,.pdf-btn,.modal-dl,.modal-x{cursor:pointer}
+    }
+    @media(max-width:560px){
+      .fzg{grid-template-columns:1fr}
+      .pig{grid-template-columns:1fr}
+      .lgg{grid-template-columns:1fr 1fr}
+      .rfw{flex-direction:column;text-align:center}
+      .rfb{justify-content:center}
+    }
+  </style>
 </head>
 <body>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
 
-    <nav id="main-nav">
-        <a onclick="scrollZuSektion('startseite')">Startseite</a>
-        <a onclick="scrollZuSektion('profil')">Profil</a>
-        <a onclick="scrollZuSektion('personalien')">Personalien</a>
-        <a onclick="scrollZuSektion('freizeit')">Freizeit</a>
-        <a onclick="scrollZuSektion('kompetenzen')">Kompetenzen</a>
-        <a onclick="scrollZuSektion('schnupperlehren')">Schnupperlehren</a>
-        <a onclick="scrollZuSektion('sprache')">Sprache</a>
-        <a onclick="scrollZuSektion('referenz')">Referenzen</a>
-        <a onclick="scrollZuSektion('kontakt')">Kontakt</a>
-        <a href="datenschutz.html" target="_blank">Datenschutz</a>
-    </nav>
-
-    <div id="mini-nav">
-        <div id="mini-menu">
-            <a onclick="scrollZuSektion('profil');closeMini()">Profil</a>
-            <a onclick="scrollZuSektion('personalien');closeMini()">Personalien</a>
-            <a onclick="scrollZuSektion('freizeit');closeMini()">Freizeit</a>
-            <a onclick="scrollZuSektion('kompetenzen');closeMini()">Kompetenzen</a>
-            <a onclick="scrollZuSektion('schnupperlehren');closeMini()">Schnupperlehren</a>
-            <a onclick="scrollZuSektion('sprache');closeMini()">Sprache</a>
-            <a onclick="scrollZuSektion('referenz');closeMini()">Referenzen</a>
-            <a onclick="scrollZuSektion('kontakt');closeMini()">Kontakt</a>
-        </div>
-        <button id="mini-toggle" onclick="toggleMini()">☰ Menü</button>
+<!-- PDF MODAL -->
+<div id="pdf-modal">
+  <div class="modal-box">
+    <div class="modal-top">
+      <div class="modal-title">📄 Schnupperbewertung — Raiffeisen am Ricken<span>06.05.2026 · Chiara Battaglia</span></div>
+      <div class="modal-acts">
+        <a class="modal-dl" href="Schnupperbewertung_Mohammad_Faizi.pdf" download>⬇ Herunterladen</a>
+        <button class="modal-x" onclick="closePdf()">✕</button>
+      </div>
     </div>
+    <div class="modal-fr"><iframe id="pdf-frame" src="" title="Schnupperbewertung PDF"></iframe></div>
+  </div>
+</div>
 
-    <div id="mini-top">
-        <button id="mini-toggle" onclick="scrollToTop();">↑</button>
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-brand">Mohammad <em style="font-style:italic;color:var(--soft);font-weight:400">Faizi</em></div>
+  <div class="nav-links">
+    <a onclick="go('profil')">Profil</a>
+    <a onclick="go('personalien')">Personalien</a>
+    <a onclick="go('freizeit')">Freizeit</a>
+    <a onclick="go('kompetenzen')">Kompetenzen</a>
+    <a onclick="go('schnupperlehren')">Schnupperlehren</a>
+    <a onclick="go('sprache')">Sprachen</a>
+    <a onclick="go('referenz')">Referenz</a>
+    <a class="nav-cta" onclick="go('kontakt')">Kontakt</a>
+    <a href="datenschutz.html" target="_blank">Datenschutz</a>
+  </div>
+</nav>
+<div id="mob-nav">
+  <div id="mob-list">
+    <a onclick="go('profil');closeMob()">Profil</a>
+    <a onclick="go('personalien');closeMob()">Personalien</a>
+    <a onclick="go('freizeit');closeMob()">Freizeit</a>
+    <a onclick="go('kompetenzen');closeMob()">Kompetenzen</a>
+    <a onclick="go('schnupperlehren');closeMob()">Schnupperlehren</a>
+    <a onclick="go('sprache');closeMob()">Sprachen</a>
+    <a onclick="go('referenz');closeMob()">Referenz</a>
+    <a onclick="go('kontakt');closeMob()">Kontakt</a>
+  </div>
+  <button id="mob-btn" onclick="toggleMob()">☰ Menü</button>
+</div>
+<button id="back-top" onclick="scrollToTop()">↑</button>
+
+<!-- HERO -->
+<section id="startseite">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow"><div class="hero-line"></div><span class="hero-eye-txt">Bewerbungsportfolio · 2026</span></div>
+      <h1 class="hero-name">Mohammad<br><em>Faizi</em></h1>
+      <div class="hero-role">Sekundarschüler Niveau A · Jona Weiden · Informatik</div>
+      <p class="hero-desc">Angehender <strong>Applikationsentwickler</strong> mit Leidenschaft für Webentwicklung und technische Problemlösung. Bereits seit der 5. Klasse programmiere ich eigene Projekte – diese Website ist der Beweis.</p>
+      <div class="hero-btns">
+        <a class="btn-gold" onclick="go('schnupperlehren')">Meine Schnupperlehren</a>
+        <a class="btn-ghost" onclick="go('kontakt')">Kontakt aufnehmen</a>
+      </div>
     </div>
-
-    <div class="header" id="startseite">
-        <img src="Image.jpg" id="image">
-        <h1>Mohammad Faizi</h1>
+    <div class="hero-right">
+      <div class="stats-card">
+        <div class="stats-grid">
+          <div class="stat-cell"><div class="stat-num">3×</div><div class="stat-label">Schnupperlehren absolviert</div></div>
+          <div class="stat-cell"><div class="stat-num">4+</div><div class="stat-label">Sprachen gesprochen</div></div>
+          <div class="stat-cell"><div class="stat-num">5/5</div><div class="stat-label">Pünktlichkeit &amp; Zuverlässigkeit</div></div>
+          <div class="stat-cell"><div class="stat-num">A</div><div class="stat-label">Schulniveau Sek</div></div>
+        </div>
+        <div class="rb-badge">
+          <div><div class="rb-lbl">Neueste Bewertung</div><div class="rb-name">Raiffeisen am Ricken</div><div class="rb-date">06.05.2026 · Empfohlen ✓</div></div>
+          <div class="rb-stars"><span class="rb-star">★</span><span class="rb-star">★</span><span class="rb-star">★</span><span class="rb-star">★</span><span class="rb-star" style="opacity:.3">★</span></div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
+<div class="divider"></div>
 
-    <div class="content">
-        <div id="profil" class="box">
-            <h2>Profil</h2>
-            <p>Ich bin Mohammad Faizi, ich gehe in die 2.Sekundarschule Jona Weiden. <br>
-            Ich konzentriere mich vorallem darauf das ich in richtung Informatik komme weil, <br>
-            ich schon in der 5.Klasse angefangen habe mit einem Freund von mir Hacks für Spiele zu programmieren. <br>
-            Meine Stärken sind Websites zu gestalten und programmieren und Technischeprobleme zu lösen.</p>
-        </div>
-        <div id="personalien" class="box">
-            <h2>Personalien</h2>
-            <p><strong>Name</strong> - Mohammad Faizi</p>
-            <p><strong>Geburtsdatum</strong> - 01.01.2012</p>
-            <p><strong>Adresse</strong> - Rapperswil-Jona, Sägestrasse 1, 8640</p>
-            <p><strong>Niveu</strong> - A (Sek)</p>
-            <p><strong>Schulort</strong> - <a href="https://www.jona.ch/" target="_blank">Weiden Jona</a></p>
-        </div>
-        <div id="freizeit" class="box">
-            <h1>Freizeit</h1>
-            <p><strong>Sport</strong> - Fussball, <a href="https://fcrj.ch/mannschaft/junioren-da">Fc Rapperswil-Jona Da Promotion</a></p>
-            <p><strong>Auf Dem Laptop</strong> - Programmieren, Spielhacks, Hausaufgaben</p>
-            <p><strong>Games</strong> - Minecraft (mit Freunden), Fortnite, GTA V</p>
-            <p><strong>Freunde</strong> - Mit Freunden draussen essen, gamen, bei ihnen Zuhause sein oder Fussball spielen.</p>
-        </div>
-        <div id="kompetenzen" class="box">
-            <h1>Kompetenzen</h1>
-            <p><strong>Programmierung</strong><br>Grundkenntnisse in verschiedenen Sprachen</p>
-            <p><strong>Technisches Verständnis</strong><br>Gutes Verständnis für Computer und Technik</p>
-            <p><strong>Problemlösung</strong><br>Fähigkeit, technische Probleme zu lösen</p>
-            <p><strong>Self-Learning</strong><br>Fähigkeit, sich selbstständig neue Technologien und Fähigkeiten anzueignen</p>
-        </div>
-        <div id="schnupperlehren" class="box">
-            <h1>Schnupperlehren</h1>
-            <p><strong>KV/in EFZ (Kaufmann/Kauffrau)</strong><br>Regionales Ausbildungs Zentrum (RAU)</p>
-            <p><strong>Informatik - Applikationsentwicklung/in EFZ / ICT-Fachmann/in EFZ </strong> <br>Regionales Ausbildungs Zentrum (RAU)</p>
-            <p><strong>KV/in EFZ (Kaufmann/Kauffrau)</strong><br>Sanitas Troesch</p>
-        </div>
-        <div id="sprache" class="box">
-            <h1>Sprachen</h1>
-            <p><strong>Deutsch</strong> - Schulkenntniss</p>
-            <p><strong>Englisch</strong> - Schulkenntniss</p>
-            <p><strong>Französisch</strong> - Schulkenntniss</p>
-            <p><strong>Persisch</strong> - Muttersprache</p>
-        </div>
-        <div id="referenz" class="box">
-            <h1>Referenz</h1>
-            <p><strong>Klassenlehrerin</strong> - Helbling Giulia</p>
-            <p><strong>Email</strong> - <a href="mailto:giulia.helbling@rj.sg.ch">giulia.helbling@rj.sg.ch</a></p>
-            <p><strong>Tel</strong> - +41 79 199 72 91</p>
-        </div>
-        </div>
-        <div id="kontakt" class="contact">
-            <h1>Kontakt</h1>
-            <p><strong>Telefon</strong> - +41 78 220 62 01</p>
-            <p><strong>Email</strong> - <a href="mailto:mohammadxi.faizi@gmail.com">mohammadxi.faizi@gmail.com</a></p>
-            <p><strong>8640, St.Gallen Rapperswil-Jona</strong></p>
-            <div>
-                <a id="datenschutz" href="datenschutz.html">Datenschutz</a>
-            </div>
-        </div>
+<!-- PROFIL -->
+<div class="sw"><section id="profil" style="padding-top:90px">
+  <div class="sh fi"><span class="sn">01</span><h2 class="st">Profil</h2><div class="sr"></div></div>
+  <div class="gc fi fi-d1">
+    <p class="pp">Ich bin <strong>Mohammad Faizi</strong> und besuche die 2. Sekundarschule Jona Weiden (Niveau A). Mein klares Ziel ist eine <strong>Ausbildung in der Informatik</strong> – bevorzugt als Applikationsentwickler EFZ oder als Kaufmann im IT-Umfeld.<br><br>Schon in der 5. Klasse habe ich gemeinsam mit einem Freund begonnen, Programme zu entwickeln. Seither habe ich mir <strong>Webentwicklung vollständig selbst beigebracht</strong> – diese Bewerbungswebsite ist das sichtbare Ergebnis davon. Meine Stärken liegen in der <strong>selbstständigen Arbeit</strong>, im technischen Problemlösen und im schnellen Erfassen neuer Konzepte.</p>
+    <div class="pt"><span class="ptg">Webentwicklung</span><span class="ptg">HTML · CSS · JavaScript</span><span class="ptg">Selbstständiges Arbeiten</span><span class="ptg">Schnelle Auffassungsgabe</span><span class="ptg">Technisches Verständnis</span></div>
+  </div>
+</section></div>
+
+<!-- PERSONALIEN -->
+<div class="sw"><section id="personalien">
+  <div class="sh fi"><span class="sn">02</span><h2 class="st">Personalien</h2><div class="sr"></div></div>
+  <div class="gc fi fi-d1">
+    <div class="pig">
+      <div class="pi"><div class="pl">Name</div><div class="pv">Mohammad Faizi</div></div>
+      <div class="pi"><div class="pl">Geburtsdatum</div><div class="pv">01.01.2012</div></div>
+      <div class="pi"><div class="pl">Adresse</div><div class="pv">Sägestrasse 1, 8640 Rapperswil-Jona</div></div>
+      <div class="pi"><div class="pl">Schulniveau</div><div class="pv">A – Sekundarschule</div></div>
+      <div class="pi"><div class="pl">Schulort</div><div class="pv"><a href="https://www.jona.ch/" target="_blank">Sek Jona Weiden ↗</a></div></div>
+      <div class="pi"><div class="pl">Klasse</div><div class="pv">2. Sekundarschule</div></div>
     </div>
+  </div>
+</section></div>
 
-    <script>
-        function scrollZuSektion(id) {
-            const el = document.getElementById(id);
-            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        const mainNav = document.getElementById('main-nav');
-        const miniNav = document.getElementById('mini-nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 80) {
-                mainNav.classList.add('hidden');
-                miniNav.style.display = 'flex';
-            } else {
-                mainNav.classList.remove('hidden');
-                miniNav.style.display = 'none';
-                closeMini();
-            }
-        });
-        function toggleMini() {
-            document.getElementById('mini-menu').classList.toggle('open');
-        }
-        function closeMini() {
-            document.getElementById('mini-menu').classList.remove('open');
-        }
+<!-- FREIZEIT -->
+<div class="sw"><section id="freizeit">
+  <div class="sh fi"><span class="sn">03</span><h2 class="st">Freizeit</h2><div class="sr"></div></div>
+  <div class="fzg fi fi-d1">
+    <div class="fzi"><div class="fzico">⚽</div><div class="fztl">Sport</div><div class="fztgs"><span class="fztg"><a href="https://fcrj.ch/mannschaft/junioren-da" target="_blank">FC Rapperswil-Jona Da ↗</a></span><span class="fztg">Fussball</span><span class="fztg">Promotion League</span></div></div>
+    <div class="fzi"><div class="fzico">💻</div><div class="fztl">Programmieren</div><div class="fztgs"><span class="fztg">Webentwicklung</span><span class="fztg">HTML / CSS / JS</span><span class="fztg">Selbststudium</span></div></div>
+    <div class="fzi"><div class="fzico">🎮</div><div class="fztl">Gaming</div><div class="fztgs"><span class="fztg">Minecraft</span><span class="fztg">Fortnite</span><span class="fztg">GTA V</span></div></div>
+    <div class="fzi"><div class="fzico">👥</div><div class="fztl">Freunde &amp; Freizeit</div><div class="fztgs"><span class="fztg">Draussen essen</span><span class="fztg">Zusammen gamen</span><span class="fztg">Fussball</span></div></div>
+  </div>
+</section></div>
 
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+<!-- KOMPETENZEN -->
+<div class="sw"><section id="kompetenzen">
+  <div class="sh fi"><span class="sn">04</span><h2 class="st">Kompetenzen</h2><div class="sr"></div></div>
+  <div class="gc fi fi-d1">
+    <div class="skl">
+      <div><div class="skt"><span class="skn">Webentwicklung — HTML, CSS, JavaScript</span><span class="sko">Fortgeschritten</span></div><div class="sktr"><div class="skb" data-w="82"></div></div></div>
+      <div><div class="skt"><span class="skn">Technisches Verständnis — Hard- &amp; Software</span><span class="sko">Sehr gut</span></div><div class="sktr"><div class="skb" data-w="88"></div></div></div>
+      <div><div class="skt"><span class="skn">Analytisches Problemlösen</span><span class="sko">Sehr gut</span></div><div class="sktr"><div class="skb" data-w="90"></div></div></div>
+      <div><div class="skt"><span class="skn">Selbstständiges Lernen neuer Technologien</span><span class="sko">Ausgezeichnet ★</span></div><div class="sktr"><div class="skb" data-w="97"></div></div></div>
+      <div><div class="skt"><span class="skn">Zuverlässigkeit &amp; Pünktlichkeit</span><span class="sko">5/5 bei Raiffeisen ★</span></div><div class="sktr"><div class="skb" data-w="100"></div></div></div>
+    </div>
+  </div>
+</section></div>
 
-        const miniTop = document.getElementById('mini-top');
+<!-- SCHNUPPERLEHREN -->
+<div class="sw"><section id="schnupperlehren">
+  <div class="sh fi"><span class="sn">05</span><h2 class="st">Schnupperlehren</h2><div class="sr"></div></div>
+  <div class="tl">
+    <!-- Raiffeisen -->
+    <div class="tli fi fi-d1">
+      <div class="tld"></div>
+      <div class="slc">
+        <div class="sltp"><span class="slnm">Raiffeisen am Ricken</span><span class="slpl">06.05.2026</span></div>
+        <div class="slmt">📍 Eschenbach SG &nbsp;·&nbsp; 09:00–15:00 Uhr &nbsp;·&nbsp; Beurteilt von Chiara Battaglia</div>
+        <div class="slfd">KV/in EFZ – Kaufmännische Ausbildung</div>
+        <div class="evs">
+          <div class="evhd">Offizielle Beurteilung der Kompetenzen · Skala 1 (Ungenügend) – 5 (Ausgezeichnet)</div>
+          <div class="evc">
+            <div class="evclbl">Fachliche Kompetenzen</div>
+            <div class="evr"><span class="evn">Verständnis für die Tätigkeiten</span><div class="evd"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div><span class="evsc">3</span></div>
+            <div class="evr"><span class="evn">Lernbereitschaft und Auffassungsgabe</span><div class="evd"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div><span class="evsc">3</span></div>
+            <div class="evr"><span class="evn">Sorgfalt und Qualitätsbewusstsein</span><div class="evd"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div><span class="evsc">4</span></div>
+            <div class="evr"><span class="evn">Selbstständiges Arbeiten</span><div class="evd"><div class="dot on5"></div><div class="dot on5"></div><div class="dot on5"></div><div class="dot on5"></div><div class="dot on5"></div></div><span class="evsc">5 ★</span></div>
+            <div class="evr"><span class="evn">Umgang mit Materialien / Geräten</span><div class="evd"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div><span class="evsc">4</span></div>
+          </div>
+          <div class="evc">
+            <div class="evclbl">Soziale Kompetenzen</div>
+            <div class="evr"><span class="evn">Teamfähigkeit und Zusammenarbeit</span><div class="evd"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div><span class="evsc">4</span></div>
+            <div class="evr"><span class="evn">Kommunikation und Ausdrucksweise</span><div class="evd"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div><span class="evsc">3</span></div>
+            <div class="evr"><span class="evn">Höflichkeit und Respekt</span><div class="evd"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div><span class="evsc">3</span></div>
+            <div class="evr"><span class="evn">Hilfsbereitschaft</span><div class="evd"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div><span class="evsc">4</span></div>
+          </div>
+          <div class="evc">
+            <div class="evclbl">Persönliche Kompetenzen</div>
+            <div class="evr"><span class="evn">Pünktlichkeit und Zuverlässigkeit</span><div class="evd"><div class="dot on5"></div><div class="dot on5"></div><div class="dot on5"></div><div class="dot on5"></div><div class="dot on5"></div></div><span class="evsc">5 ★</span></div>
+            <div class="evr"><span class="evn">Gepflegtes Erscheinungsbild</span><div class="evd"><div class="dot on5"></div><div class="dot on5"></div><div class="dot on5"></div><div class="dot on5"></div><div class="dot on5"></div></div><span class="evsc">5 ★</span></div>
+            <div class="evr"><span class="evn">Motivation und Engagement</span><div class="evd"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div><span class="evsc">4</span></div>
+            <div class="evr"><span class="evn">Eigeninitiative</span><div class="evd"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div><span class="evsc">4</span></div>
+            <div class="evr"><span class="evn">Kritikfähigkeit</span><div class="evd"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div><span class="evsc">4</span></div>
+          </div>
+          <div class="str-box"><span style="font-size:18px">💬</span><div><div class="str-lbl">Stärken laut Betrieb</div><div class="str-txt">Offenheit und Kontaktfähigkeit</div></div></div>
+          <div class="rec-row">
+            <div class="rec-badge">✅ Empfohlen — Raiffeisenbank am Ricken, Eschenbach</div>
+            <button class="pdf-btn" onclick="openPdf()">📄 Bewertung als PDF öffnen</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- RAU Informatik -->
+    <div class="tli fi fi-d2"><div class="tld t"></div>
+      <div class="slc"><div class="sltp"><span class="slnm">Regionales Ausbildungs Zentrum (RAU)</span><span class="slpl b">Informatik</span></div><div class="slmt">📍 Region Rapperswil-Jona</div><div class="slfd">Informatik – Applikationsentwicklung/in EFZ &nbsp;/&nbsp; ICT-Fachmann/in EFZ</div></div>
+    </div>
+    <!-- RAU KV -->
+    <div class="tli fi fi-d2"><div class="tld t"></div>
+      <div class="slc"><div class="sltp"><span class="slnm">Regionales Ausbildungs Zentrum (RAU)</span><span class="slpl b">KV</span></div><div class="slmt">📍 Region Rapperswil-Jona</div><div class="slfd">KV/in EFZ – Kaufmännische Ausbildung</div></div>
+    </div>
+    <!-- Sanitas -->
+    <div class="tli fi fi-d3"><div class="tld t"></div>
+      <div class="slc"><div class="sltp"><span class="slnm">Sanitas Troesch</span><span class="slpl b">KV</span></div><div class="slmt">📍 Schweiz</div><div class="slfd">KV/in EFZ – Kaufmännische Ausbildung</div></div>
+    </div>
+  </div>
+</section></div>
 
-        window.addEventListener('scroll', () => {
-        if (window.scrollY > 180) {
-            miniTop.style.display = 'block';
-        } else {
-            miniTop.style.display = 'none';
-        }
-        });
+<!-- SPRACHEN -->
+<div class="sw"><section id="sprache">
+  <div class="sh fi"><span class="sn">06</span><h2 class="st">Sprachen</h2><div class="sr"></div></div>
+  <div class="lgg fi fi-d1">
+    <div class="lgc"><div class="lgf">🇦🇫</div><div class="lgn">Persisch / Dari</div><div class="lgl">Muttersprache · C2</div><div class="lgp"><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div></div></div>
+    <div class="lgc"><div class="lgf">🇩🇪</div><div class="lgn">Deutsch</div><div class="lgl">Schulkenntnisse · B2</div><div class="lgp"><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip"></div><div class="pip"></div></div></div>
+    <div class="lgc"><div class="lgf">🇬🇧</div><div class="lgn">Englisch</div><div class="lgl">Schulkenntnisse · B1</div><div class="lgp"><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip"></div><div class="pip"></div><div class="pip"></div></div></div>
+    <div class="lgc"><div class="lgf">🇫🇷</div><div class="lgn">Französisch</div><div class="lgl">Schulkenntnisse · A2</div><div class="lgp"><div class="pip on"></div><div class="pip on"></div><div class="pip"></div><div class="pip"></div><div class="pip"></div><div class="pip"></div></div></div>
+  </div>
+</section></div>
 
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
+<!-- REFERENZ -->
+<div class="sw"><section id="referenz">
+  <div class="sh fi"><span class="sn">07</span><h2 class="st">Referenz</h2><div class="sr"></div></div>
+  <div class="gc fi fi-d1">
+    <div class="rfw">
+      <div class="rfav">GH</div>
+      <div><div class="rfn">Helbling Giulia</div><div class="rfr">Klassenlehrerin · Sek Jona Weiden</div><div class="rfb"><a class="rfa" href="mailto:giulia.helbling@rj.sg.ch">✉ giulia.helbling@rj.sg.ch</a><a class="rfa" href="tel:+41791997291">📞 +41 79 199 72 91</a></div></div>
+    </div>
+  </div>
+</section></div>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="kt-pre">Kontakt</div>
+  <h2 class="kt-title">Bereit für den nächsten Schritt.</h2>
+  <p class="kt-sub">Ich freue mich über Ihre Nachricht – per E-Mail oder Telefon.</p>
+  <div class="kt-row">
+    <a class="kt-item" href="tel:+41782206201"><span class="kt-ico">📞</span><div><div class="kt-lbl">Telefon</div><div class="kt-val">+41 78 220 62 01</div></div></a>
+    <a class="kt-item" href="mailto:mohammadxi.faizi@gmail.com"><span class="kt-ico">✉</span><div><div class="kt-lbl">E-Mail</div><div class="kt-val">mohammadxi.faizi@gmail.com</div></div></a>
+    <div class="kt-item"><span class="kt-ico">📍</span><div><div class="kt-lbl">Wohnort</div><div class="kt-val">8640 Rapperswil-Jona</div></div></div>
+  </div>
+</section>
+
+<footer><span>© 2026 Mohammad Faizi</span><span><a href="datenschutz.html" target="_blank">Datenschutzerklärung</a></span></footer>
+
+<script>
+  const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+  document.addEventListener('mousemove',e=>{cur.style.left=ring.style.left=e.clientX+'px';cur.style.top=ring.style.top=e.clientY+'px'});
+  const mainNav=document.getElementById('main-nav'),mobNav=document.getElementById('mob-nav'),backTop=document.getElementById('back-top');
+  window.addEventListener('scroll',()=>{const y=window.scrollY;mainNav.classList.toggle('hidden',y>80);mobNav.style.display=y>80?'flex':'none';backTop.style.display=y>400?'flex':'none'});
+  function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'})}
+  function toggleMob(){document.getElementById('mob-list').classList.toggle('open')}
+  function closeMob(){document.getElementById('mob-list').classList.remove('open')}
+  function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'})}
+  function openPdf(){document.getElementById('pdf-frame').src='Schnupperbewertung_Mohammad_Faizi.pdf';document.getElementById('pdf-modal').classList.add('open');document.body.style.overflow='hidden'}
+  function closePdf(){document.getElementById('pdf-modal').classList.remove('open');document.body.style.overflow='';setTimeout(()=>{document.getElementById('pdf-frame').src=''},300)}
+  document.getElementById('pdf-modal').addEventListener('click',e=>{if(e.target===document.getElementById('pdf-modal'))closePdf()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closePdf()});
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.08});
+  document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+  const skObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.skb').forEach(b=>b.style.width=b.dataset.w+'%');skObs.unobserve(e.target)}})},{threshold:.3});
+  document.querySelectorAll('.gc').forEach(c=>skObs.observe(c));
+</script>
 </body>
 </html>
